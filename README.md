@@ -26,13 +26,14 @@ in [the experiment registry](provenance/EXPERIMENT_REGISTRY.md).
 
 ## Repository contents
 
-- `paper/` - final manuscript PDF.
+- `paper/` - final manuscript PDF and editable LaTeX source.
 - `prompts/` and `config/` - exact treatment prompts and paper-only registry.
 - `src/` - archived simulation, semantic-analysis, and paper-figure code.
 - `data/market/` - market inputs and truthful benchmark inputs used by the runs.
 - `results/raw-runs/` - exact output directories for all 30 paper runs.
 - `results/analysis/six-treatment/` - cached tables and intermediate analyses.
-- `results/paper-figures/` - final-candidate paper figures, tables, and report.
+- `paper/source/figures/` - the two final paper figures.
+- `results/paper-figures/` - supporting tables and reports used to prepare the paper.
 - `provenance/` - source state and checksums for this immutable snapshot.
 
 `provenance/MANIFEST.sha256` is a cryptographic inventory of the frozen

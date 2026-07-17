@@ -1,0 +1,59 @@
+% Table II: Treatment-level outcomes with vertically stacked confidence intervals
+% Requires: \usepackage{booktabs}
+
+\begin{table*}[t]
+\centering
+\caption{Treatment-Level Outcomes by Prompt Objective}
+\label{tab:treatment_summary}
+\scriptsize
+\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Treatment & Prompt $S_t$ & TARJ orient. & Mean markup & $\Delta P$ (\$/MWh) & $\Delta \Pi$ (\$M) \\
+\midrule
+T1 Compliance & $-0.134$ &
+\begin{tabular}{@{}c@{}}$-0.011$\\{\scriptsize [$-0.015$, $-0.007$]}\end{tabular} &
+\begin{tabular}{@{}c@{}}1.144\\{\scriptsize [1.129, 1.159]}\end{tabular} &
+\begin{tabular}{@{}c@{}}6.87\\{\scriptsize [5.87, 7.90]}\end{tabular} &
+\begin{tabular}{@{}c@{}}7.33\\{\scriptsize [6.31, 8.00]}\end{tabular} \\
+\addlinespace[0.25em]
+T2 Balanced & 0.009 &
+\begin{tabular}{@{}c@{}}0.028\\{\scriptsize [0.024, 0.032]}\end{tabular} &
+\begin{tabular}{@{}c@{}}1.591\\{\scriptsize [1.547, 1.632]}\end{tabular} &
+\begin{tabular}{@{}c@{}}25.32\\{\scriptsize [21.98, 28.73]}\end{tabular} &
+\begin{tabular}{@{}c@{}}26.77\\{\scriptsize [23.59, 29.72]}\end{tabular} \\
+\addlinespace[0.25em]
+T3 Guided Profit & 0.060 &
+\begin{tabular}{@{}c@{}}0.057\\{\scriptsize [0.054, 0.060]}\end{tabular} &
+\begin{tabular}{@{}c@{}}1.919\\{\scriptsize [1.848, 1.990]}\end{tabular} &
+\begin{tabular}{@{}c@{}}40.67\\{\scriptsize [36.60, 44.89]}\end{tabular} &
+\begin{tabular}{@{}c@{}}42.43\\{\scriptsize [38.12, 47.12]}\end{tabular} \\
+\addlinespace[0.25em]
+T4 Baseline Profit & 0.125 &
+\begin{tabular}{@{}c@{}}0.066\\{\scriptsize [0.061, 0.070]}\end{tabular} &
+\begin{tabular}{@{}c@{}}1.883\\{\scriptsize [1.769, 1.998]}\end{tabular} &
+\begin{tabular}{@{}c@{}}38.26\\{\scriptsize [31.97, 44.57]}\end{tabular} &
+\begin{tabular}{@{}c@{}}40.04\\{\scriptsize [28.20, 49.31]}\end{tabular} \\
+\addlinespace[0.25em]
+T5 Profit-Max & 0.132 &
+\begin{tabular}{@{}c@{}}0.065\\{\scriptsize [0.061, 0.068]}\end{tabular} &
+\begin{tabular}{@{}c@{}}2.382\\{\scriptsize [2.267, 2.523]}\end{tabular} &
+\begin{tabular}{@{}c@{}}56.15\\{\scriptsize [49.11, 62.95]}\end{tabular} &
+\begin{tabular}{@{}c@{}}58.85\\{\scriptsize [56.32, 61.41]}\end{tabular} \\
+\addlinespace[0.25em]
+T6 High Profit-Max & 0.147 &
+\begin{tabular}{@{}c@{}}0.067\\{\scriptsize [0.064, 0.070]}\end{tabular} &
+\begin{tabular}{@{}c@{}}2.700\\{\scriptsize [2.593, 2.809]}\end{tabular} &
+\begin{tabular}{@{}c@{}}65.30\\{\scriptsize [60.12, 70.63]}\end{tabular} &
+\begin{tabular}{@{}c@{}}68.15\\{\scriptsize [61.41, 74.89]}\end{tabular} \\
+\bottomrule
+\end{tabular}
+
+\vspace{1.0em}
+\begin{minipage}{0.90\textwidth}
+\footnotesize
+\emph{Note:} Bracketed values report 95\% bootstrap intervals. $S_t$ is the SBERT prompt profit-minus-compliance orientation. $\Delta P$ is average price increase relative to the competitive benchmark, and $\Delta \Pi$ is firm profit gain. Price, markup, and TARJ intervals resample seed--day blocks within treatment; firm-profit intervals resample seed-level treatment runs. TARJ orientation is post-treatment and is reported as behavioral alignment rather than a causal mechanism.
+\end{minipage}
+\vspace{-0.4em}
+\end{table*}

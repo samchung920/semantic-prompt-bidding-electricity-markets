@@ -1,0 +1,52 @@
+\section{Results}
+
+\begin{figure*}[!t]
+    \centering
+    \includegraphics[
+        width=0.90\textwidth,
+        height=0.20\textheight,
+        keepaspectratio
+    ]{figures/figure_1_all_treatments_overlay_twocolumn}
+    \caption{Hourly price trajectories by prompt treatment. Lines show treatment-average prices for all six prompt objectives; the dashed line shows the perfect competition benchmark and the shaded band shows the Nash benchmark range. More profit-oriented prompt treatments produce higher prices during peak and near-scarcity hours.}
+    \label{fig:price_trajectories}
+    \vspace{-0.6em}
+\end{figure*}
+\input{tables/table_II_treatment_summary.tex} 
+
+\subsection{Economic Benchmark Comparison}
+
+We first compare LLM-agent market outcomes with the perfect competition and strategic Nash Equilibrium benchmarks. The perfect competition benchmark clears the same market using cost-based offers, so it provides the reference price path for measuring price impacts. The Nash benchmark provides a useful strategic reference because it represents equilibrium behavior under the same market environment and markup grid available to the LLM agents. Since some hours have multiple pure-strategy equilibria, we report an hourly Nash price band rather than a single price. The band is not evidence that the agents solved for equilibrium. Instead, it shows whether their bids move market outcomes away from the perfect competition benchmark and toward the strategically elevated prices that are feasible under model conditions.
+
+Figure~\ref{fig:price_trajectories} shows that the prompt treatments produce visibly different price trajectories. As the profit orientation ($S_t$) of treatments increases, we observe more aggressive bidding behavior and higher market prices.  T1 Compliance remains closest to the perfect competition benchmark. Intermediate treatments raise prices during high-load hours, while the most profit-oriented treatments, especially T5 Profit-Max and T6 High Profit-Max, move prices closer to strategic pricing and the Nash band during peak and near-scarcity periods. This is consistent with the electricity-market intuition that strategic markups matter most when supply is tight and the marginal unit has greater price-setting influence.
+
+
+\subsection{Treatment-Level Outcomes}
+
+Table~\ref{tab:treatment_summary} summarizes the treatment-level semantic and market outcomes. As objectives become more profit-oriented, average price impacts generally increase: from $\$6.87$/MWh under T1 Compliance to $\$65.30$/MWh under T6 High Profit-Max. The ordering is not perfectly monotonic, since T3 has lower prompt orientation than T4 but a slightly higher average price impact. Nevertheless, there is a clear emerging pattern. Compliance-oriented prompting produces outcomes closest to the perfect competition benchmark, while increasingly profit-oriented prompting pushes prices upward toward the strategic price range indicated by the Nash band.
+
+The markup and profit results show the same directional pattern. Mean markup increases from 1.144 under T1 to 2.700 under T6, and firm profit gain rises from \$7.33M to \$68.15M. These increases suggest that more aggressive profit-maximizing language pushes agents to submit higher markups and capture larger profits. However, this effect is bounded. In this case study, prices are limited by the finite markup grid, the underlying supply stack, demand conditions, and the availability of the backstop resource. The Nash band therefore provides a useful reference for interpreting the upper strategic range. It does not represent a hard cap on every possible non-equilibrium bid outcome, but it shows the elevated price region consistent with equilibrium play under the same model assumptions. The main result is that changing only the objective block of the prompt moves simulated bidding behavior from near-competitive outcomes toward this strategic benchmark range.
+
+
+\subsection{Semantic Orientation, Prompt Selection, and Market Outcomes}
+
+Figure~\ref{fig:semantic_orientation} relates semantic profit-minus-compliance orientation to market outcomes, showing whether the SBERT ordering used to characterize and select prompts is reflected in bidding behavior. Panels A and B use the SBERT orientation of the objective prompt, which is measured before simulation and represents the treatment's position along the compliance-profit axis. Panels C and D use the SBERT orientation of generated TARJ rationales, which are post-treatment text artifacts produced by the agents during the simulation. Prompt orientation therefore measures the intervention, while TARJ orientation measures agent-generated explanations for bidding behavior.
+\begin{figure}[!t]
+    \centering
+    \includegraphics[
+        width=0.99\columnwidth,
+        height=0.55\textheight,
+        keepaspectratio
+    ]{figures/figure_2_semantic_orientation_main_no_spearman}
+    \caption{Semantic orientation, prices, and bidding behavior. Panels A--B compare prompt orientation with average price increases and mean markups; Panels C--D compare TARJ orientation with daily prices and firm markups. Error bars report 95\% bootstrap intervals.}
+    \label{fig:semantic_orientation}
+    \vspace{-0.8em}
+\end{figure}
+The main statistical result is a treatment-level relationship between prompt orientation and market outcomes, estimated using \eqref{eq:dose_response}.
+
+\input{tables/table_III_dose_response_summary.tex}
+
+As shown in Table~\ref{tab:dose_response_summary}, a 0.1 increase in prompt orientation is associated with an estimated $\$18.17$/MWh increase in average price impact relative to the perfect competition benchmark. The same pattern appears for bidding aggressiveness: a 0.1 increase in prompt orientation is associated with a 0.465 increase in mean markup. The table also shows positive associations with firm profit gains, consumer payment increases, and TARJ reasoning orientation. These relationships are also statistically strong within the six-treatment design, with the $R^2$ values in Table~\ref{tab:dose_response_summary} ranging from 0.810 to 0.967, and all reported $p$-values are below 0.05. Because the regressions use treatment-level means, we interpret these statistics as evidence of within-case alignment rather than as broad population-level inference.
+
+A similar relationship also appears in distributional market outcomes. A 0.1 increase in prompt orientation is associated with an estimated $\$18.93$M increase in firm profit gain and a $\$19.02$M increase in consumer payments. Prompt orientation is also strongly associated with generated reasoning language. A 0.1 increase in prompt orientation is associated with a 0.029 increase in mean TARJ reasoning orientation. This is the expected direction under the proposed framework. Prompts that are semantically closer to profit maximization are intended to induce more aggressive bidding, higher market prices, and higher firm profits if the prompt intervention is functioning properly.
+
+The TARJ-orientation panels (C and D) provide a secondary result. More profit-oriented generated reasoning accompanies higher prices and more aggressive markups, but this relationship is interpreted differently from the prompt-orientation relationship. TARJ text is generated after the prompt intervention, so it is treated as a way to analyze agent reasoning in addition to bidding behavior. This alignment is important because it suggests that the framework is not only detecting changes in bidding behavior, but also validating that prompt meaning, generated reasoning, and bidding posture are aligned.

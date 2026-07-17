@@ -1,0 +1,26 @@
+\begin{table}[!t]
+\centering
+\caption{SBERT Orientation Regression Coefficients}
+\label{tab:dose_response_summary}
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Outcome & $\hat{\beta}_{0.1}$ & 95\% CI & $R^2$ & $p$ \\
+\midrule
+$\Delta P$ (\$/MWh) & 18.17 & [7.85, 28.49] & 0.857 & 0.008 \\
+Mean markup & 0.465 & [0.153, 0.778] & 0.810 & 0.014 \\
+Firm profit (\$M) & 18.93 & [8.21, 29.65] & 0.857 & 0.008 \\
+Consumer payments (\$M) & 19.02 & [8.35, 29.70] & 0.860 & 0.008 \\
+Mean TARJ orientation & 0.029 & [0.021, 0.036] & 0.967 & $<0.001$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.25em}
+\begin{minipage}{0.96\columnwidth}
+\footnotesize
+\emph{Note:} Estimates come from treatment-level regressions $\bar{Y}_t=\alpha+\beta S_t+\epsilon_t$, where $S_t$ is prompt SBERT profit-minus-compliance orientation. Coefficients are scaled to a 0.1 increase in prompt orientation. CIs use OLS standard errors across the six treatment means with four residual degrees of freedom.
+\end{minipage}
+\vspace{-0.8em}
+\end{table}

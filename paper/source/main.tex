@@ -1,0 +1,102 @@
+\documentclass[conference]{IEEEtran}
+
+% ------------------------------------------------------------------
+% IEEE / NAPS-compatible packages
+% ------------------------------------------------------------------
+
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+% Figures and tables
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+
+% References and URLs
+\usepackage{cite}
+\usepackage{url}
+
+% Optional but usually safe. If IEEE PDF eXpress complains, comment this out.
+\usepackage[hidelinks]{hyperref}
+
+% Graphics path
+\graphicspath{{figures/}}
+
+% Better table column types
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Correct bad hyphenation if needed
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% ------------------------------------------------------------------
+% Document
+% ------------------------------------------------------------------
+
+\begin{document}
+
+\title{Semantic Analysis of Prompt-Directed Bidding in Electricity Markets}
+
+\author{
+\IEEEauthorblockN{
+Samuel Chung\IEEEauthorrefmark{1},
+Shen Wang\IEEEauthorrefmark{2},
+Le Xie\IEEEauthorrefmark{1}
+}
+\IEEEauthorblockA{
+\IEEEauthorrefmark{1}Harvard John A. Paulson School of Engineering and Applied Sciences,
+Cambridge, MA, USA\\
+Emails: samuelchung@college.harvard.edu, xie@seas.harvard.edu
+}
+\IEEEauthorblockA{
+\IEEEauthorrefmark{2}Center for Energy and Environmental Policy Research, Massachusetts Institute of Technology,
+Cambridge, MA, USA\\
+Email: swang16@mit.edu
+}
+}
+
+\maketitle
+
+% ------------------------------------------------------------------
+% Abstract and keywords
+% ------------------------------------------------------------------
+
+\begin{abstract}
+Large language models (LLMs) are increasingly capable of acting as autonomous decision-making agents, raising questions about how prompt design shapes behavior in strategic market settings. Electricity markets are a natural setting for this question because market participants may use LLM-based tools to support bidding and strategy decisions. This paper treats profit-seeking prompt objectives as controlled interventions in a stylized day-ahead electricity-market simulation. We vary only the objective block of each agent's modular prompt while holding the market environment, action space, model configuration, and prompt format fixed. Using a machine learning-based sentence transformer model (SBERT) for sentence embeddings, we construct a profit-versus-compliance semantic axis to measure the profit orientation of both prompts and generated agent reasoning, allowing SBERT to serve as both a prompt-selection tool and a post-simulation evaluation measure. Across six prompt treatments, more profit-oriented objectives produce higher markups and market prices relative to the perfectly competitive benchmark, especially during peak and near-scarcity hours. Regression results show that prices and profits increase as prompt orientation moves from compliance-oriented to profit-oriented language. Agent-generated reasoning also becomes more profit-oriented when bids become more aggressive, suggesting that semantic analysis can help assess whether prompt wording, reasoning, and bidding actions are aligned. While case-study specific, the results show how profit-oriented prompting can drive higher market prices in electricity markets and how embedding-based semantic measurement can be used to study that behavior.
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+Large language models, electricity markets, strategic bidding, prompt engineering, semantic embeddings, agent-based simulation, market power.
+\end{IEEEkeywords}
+
+% ------------------------------------------------------------------
+% Main text
+% ------------------------------------------------------------------
+
+\input{sections/01_background_intro.tex}
+
+\input{sections/02_methodology.tex}
+
+\input{sections/03_results.tex}
+
+\input{sections/04_discussion.tex}
+
+\input{sections/05_conclusion.tex}
+
+
+\section*{Disclaimer}
+
+The views expressed in this paper are those of the authors and do not reflect the views of PJM Interconnection, L.L.C. or its Board of Managers, of which Le Xie is a member.
+
+% ------------------------------------------------------------------
+% References
+% ------------------------------------------------------------------
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

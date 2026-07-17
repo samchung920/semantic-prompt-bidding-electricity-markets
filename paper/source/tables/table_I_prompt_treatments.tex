@@ -1,0 +1,28 @@
+% Table I: Prompt Objective Treatments and Semantic Orientation
+% Requires in main.tex: \usepackage{booktabs,tabularx,array}
+
+\begin{table*}[t]
+\centering
+\caption{Prompt Objective Treatments and Semantic Orientation}
+\label{tab:prompt_treatments}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{@{}lll r >{\raggedright\arraybackslash}X@{}}
+\toprule
+Treatment & Label & Stage & Prompt orientation & Objective summary \\
+\midrule
+T1 & Compliance & Retrospective & $-0.134$ & Competitive and economically justifiable bidding; avoid unjustified deviations from marginal cost. \\
+\textbf{T2} & \textbf{Balanced} & \textbf{Prospective} & \textbf{$0.009$} & \textbf{Profit-seeking with compliance and economic-justification guardrails.} \\
+\textbf{T3} & \textbf{Guided Profit} & \textbf{Prospective} & \textbf{$0.060$} & \textbf{Active profit maximization through economically justified and defensible markups.} \\
+T4 & Baseline Profit & Retrospective & $0.125$ & Baseline current-day profit-seeking objective. \\
+T5 & Profit-Max & Retrospective & $0.132$ & Strong current-day profit-maximization objective. \\
+\textbf{T6} & \textbf{High Profit-Max} & \textbf{Prospective} & \textbf{$0.147$} & \textbf{Strongest profit-oriented objective within the allowed simulator action space.} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{1.0em}
+\begin{minipage}{0.90\textwidth}
+\footnotesize
+\emph{Note:} Bold rows indicate treatments selected prospectively using SBERT before simulation. The remaining treatments were initial prompt conditions analyzed retrospectively. Prompt orientation is measured as cosine similarity to the profit anchor minus cosine similarity to the compliance anchor.
+\end{minipage}
+\end{table*}

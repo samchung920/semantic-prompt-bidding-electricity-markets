@@ -1,0 +1,60 @@
+\section{Methodology}
+
+\subsection{Case Study Setup}
+
+The market setting is a stylized single-node hourly electricity market designed to study how objective-language interventions affect LLM bidding strategies. The market design retains the merit-order logic of uniform-price power-market clearing. Firms submit supply offers, the market operator dispatches resources in increasing offer order to meet load, and all dispatched units earn at the market-clearing price. The model abstracts from unit commitment, ramping and transmission constraints, congestion, day-ahead/real-time uncertainty, storage, renewable generation, and other operational details of ISO markets. This simplification is deliberate because the goal is to create a controlled environment in which the objectives given to agents can be varied while the market environment and action space remain simple and fixed.
+
+The market's load profile comes from the IEEE RTS-GMLC Test System summer case \cite{barrows2020ieee}. We use the first week of July, corresponding to a 168-hour high-load operating week. This subset was selected because it contains periods of tight market conditions that provide the opportunity for strategic bidding behavior. The generation fleet is thermal-only and consists of five strategic firms plus a non-strategic backstop resource. The backstop preserves feasibility in tight hours but is not modeled as an LLM decision-maker.
+
+Each strategic firm is represented by one LLM-based bidding agent implemented using OpenAI's GPT-4.1 model with temperature 0.2. The LLM agent acts as a firm-level bidding layer, not as the ISO or market operator. On each simulated day, each firm submits a 24-hour schedule of markup factors. On each simulated day $d$, firm $i$ submits a 24-hour markup schedule
+\begin{equation}
+\mathbf{m}_{i,d} = (m_{i,d,1}, \ldots, m_{i,d,24}), \qquad m_{i,d,h} \in \mathcal{M}.
+\label{eq:markup_schedule}
+\end{equation}
+For each generator $g$ owned by firm $i$, the hourly offer price is formed by applying the submitted markup to marginal cost:
+\begin{equation}
+p^{\mathrm{offer}}_{i,g,d,h} = m_{i,d,h} c_{i,g,h}.
+\label{eq:offer_price}
+\end{equation}
+where $c_{i,g,h}$ is the generator's marginal cost in hour $h$. The market is then cleared hour by hour using the resulting supply offers from all firms. The allowed markup grid is
+\begin{equation}
+\mathcal{M}=\{1.0,1.1,1.25,1.5,2.0,2.5,3.0,4.0,5.0,6.0,7.5,10.0\}.
+\label{eq:markup_grid}
+\end{equation}
+The case study includes six prompt treatments and five random seeds per treatment, producing thirty treatment-seed runs.
+
+\subsection{Prompt Structure and Objective Treatments}
+
+Each firm agent receives the same elements within a modular prompt. Agents are given context on market design, bidding logistics, restrictions on communication and collusion, common information available to them, firm-specific identifiers, portfolio details, a treatment-specific objective block, and scaffolding for Thought, Action, Reflection, and Journal (TARJ) outputs. The \textbf{Action} field contains the 24-hour markup schedule used to clear the market. The \textbf{Thought}, \textbf{Reflection}, and \textbf{Journal} fields prompt generated rationales associated with each bidding decision. These rationales are useful for later semantic analysis because they track the agent's stated reasoning. The Journal field also carries information from one day to the next. We interpret these outputs as generated explanations, rather than direct observations of the model's internal reasoning process.
+
+The agent's bidding objective is the only intentionally varied prompt component. All other prompt components are held fixed between treatments. This allows differences across treatments to be interpreted as only effects of objective-language interventions within the simulated environment, subject to stochastic variation from the model itself.
+
+Table~\ref{tab:prompt_treatments} summarizes the six treatments. Three treatments were part of the initial design and are analyzed retrospectively with SBERT: T1 Compliance, T4 Baseline Profit, and T5 Profit-Max. These treatments were designed as initial tests of whether the same agent architecture could be directed toward qualitatively different bidding postures. Three additional treatments were selected prospectively using SBERT before simulation: T2 Balanced, T3 Guided Profit, and T6 High Profit-Max. More on this in the following section.
+
+\input{tables/table_I_prompt_treatments.tex}
+
+\subsection{Semantic Orientation}
+
+We use SBERT to quantify the semantic direction of prompt objectives and generated TARJ rationales. We use this measurement because the experimental intervention is written in natural language, so we aim to transform the prompt's meaning into a quantity along the profit-versus-compliance continuum. Applying the same measure to generated TARJ rationales also lets us test whether the agent's stated reasoning moves in the direction implied by the prompt and submitted bids. SBERT maps sentences to dense vector representations that can be compared using cosine similarity \cite{reimers2019sentencebert}. 
+
+Let $e_x$ denote the SBERT embedding of a text object $x$, such as a prompt objective block or a generated TARJ rationale. Let $e_{\text{profit}}$ denote the centroid of pure-profit anchor sentences, and let $e_{\text{compliance}}$ denote the centroid of compliance-oriented or competitive-bidding anchor sentences. We define the profit-minus-compliance orientation score as
+\begin{equation}
+S(x)=\cos(e_x,e_{\text{profit}})-\cos(e_x,e_{\text{compliance}}).
+\label{eq:sbert_orientation}
+\end{equation}
+Positive values indicate greater alignment with profit-maximization language, while negative values indicate greater alignment with compliance-constrained or competitive-bidding language. This analysis builds on semantic-axis approaches in which researcher-defined poles are used to project text onto an interpretable semantic dimension \cite{an2018semaxis,kozlowski2019geometry}.
+
+SBERT is used in two ways. Retrospectively, it scores the initial prompt treatments and their generated TARJ rationales after the treatments have been defined. Prospectively, it screens candidate objective text before simulation so that new treatments can be selected to interpolate between existing treatments or extend the semantic range. This prospective use is important because it makes prompt design systematic. Additional treatments can be chosen based on their location along the semantic axis rather than only on researcher intuition.
+
+\subsection{Evaluation Design and Metrics}
+
+We evaluate both economic and semantic outcomes. Economic metrics include average markup, average price increase relative to the perfect competition benchmark, consumer payment increase, firm profit gain, and a comparison with perfect competition and Nash benchmarks. The perfect competition benchmark is calculated by clearing the market under marginal-cost-based offers of each agent (markup factors equal to 1.0). The Nash benchmark is computed over the allowed markup grid in \eqref{eq:markup_grid}. For each hour, the load and generator costs are fixed, every joint markup profile across the five strategic firms is enumerated, and each firm's unilateral deviations on the same grid are evaluated. A bidding profile is classified as a pure-strategy Nash equilibrium if no firm can increase its profit by unilaterally changing its markup while the other firms' markups remain fixed.
+
+Because the prompted objective is the experimental intervention, the primary comparison is across prompt treatments. We report treatment-level means and bootstrap confidence intervals over simulated seed-day blocks. To summarize the relationship between semantic prompt intensity and market outcomes, we estimate a SBERT orientation regression for each outcome,
+\begin{equation}
+\bar{Y}_t=\alpha+\gamma S_t+u_t,
+\label{eq:dose_response}
+\end{equation}
+where $\bar{Y}_t$ is the average outcome for treatment $t$ and $S_t$ is the SBERT orientation of that treatment's objective block. We report $\gamma$ scaled to a 0.1 increase in prompt orientation, which gives the coefficient a direct interpretation in outcome units such as dollars per MWh, markup factors, or millions of dollars. A positive coefficient means that moving the prompt toward more profit-oriented language is associated with a higher value of the outcome, while a negative coefficient means it is associated with a lower value.
+
+We also evaluate whether the generated rationale language is behaviorally aligned with bidding actions by analyzing the TARJ text produced by the agents. Relationships between TARJ orientation and outcomes are treated as a proxy for behavioral alignment: whether the agent's stated reasoning and memory artifacts align with its bidding behavior. For firm-level outcomes, we relate firm-day TARJ orientation to firm markups and profits. For market-level outcomes such as clearing price, TARJ orientation is aggregated to the market-day level to avoid treating shared prices as independent firm-level observations.
