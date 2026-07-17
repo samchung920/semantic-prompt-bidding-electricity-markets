@@ -1,0 +1,10 @@
+level,n,relationship,spearman_rho,pearson_r
+Treatment,6,Prompt orientation vs. Average price increase,0.942857142857143,0.9255572560425069
+Treatment,6,Prompt orientation vs. Mean markup,0.942857142857143,0.9000614707943125
+Treatment,6,Prompt orientation vs. Consumer payment increase,0.942857142857143,0.9270956567941179
+Treatment,6,Prompt orientation vs. Firm profit gain,0.942857142857143,0.9259444375558299
+Treatment,6,Prompt orientation vs. Mean TARJ reasoning orientation,0.942857142857143,0.9832867470415666
+Firm-day,1050,TARJ reasoning orientation vs. Daily firm average markup,0.44637731983545775,0.3636039703602979
+Firm-day,1050,TARJ reasoning orientation vs. Daily firm profit,0.341775391792711,0.31329911574345026
+Firm-day,1050,TARJ reasoning orientation vs. Daily firm regret,0.15682996791883502,0.0891482058311164
+Market-day,210,Mean TARJ reasoning orientation vs. daily average clearing price,0.5889197357892793,0.6180227834232614

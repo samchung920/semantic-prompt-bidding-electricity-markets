@@ -1,0 +1,2 @@
+treatment,n_runs,avg_price_increase,avg_market_price,avg_truthful_price,avg_consumer_payment_increase,avg_markup,avg_total_firm_profit,avg_total_firm_profit_gain,mean_firm_regret,mean_relative_regret_br,total_retry_used_rows,total_fallback_used_rows,total_valid_response_rows,mean_hour_max_regret
+perfect_competition,0,0.0,33.63606838357143,33.63606838357143,0.0,1.0,7955222.32188882,0.0,44339.586324992575,0.29541984355051354,0,0,0,188942.54091285306

@@ -1,0 +1,7 @@
+Treatment,Label,Stage,SBERT orientation,Objective summary
+T1,Compliance,Retrospective,-0.1343623918546908,Competitive and economically justifiable bidding; avoid unjustified deviations from marginal cost.
+T2,Balanced,Prospective,0.0092115060139728,Profit-seeking with compliance and economic-justification guardrails.
+T3,Guided Profit,Prospective,0.0595828636501931,Active profit maximization through economically justified and defensible markups.
+T4,Baseline Profit,Retrospective,0.1252509049534585,Baseline current-day profit-seeking objective.
+T5,Profit-Max,Retrospective,0.131522486039241,Strong current-day profit-maximization objective.
+T6,High Profit-Max,Prospective,0.1473416596838563,Strongest profit-oriented objective within the allowed simulator action space.

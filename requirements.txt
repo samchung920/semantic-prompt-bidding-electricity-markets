@@ -1,0 +1,8 @@
+matplotlib
+numpy
+openai
+pandas
+scikit-learn
+scipy
+sentence-transformers
+statsmodels

@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the accompanying paper."
+title: "Semantic Analysis of Prompt-Directed Bidding in Electricity Markets"
+type: software
+version: 1.0.0
+date-released: 2026-07-16
+abstract: "Reproducibility materials for the six-treatment prompt-design study reported in the accompanying paper."

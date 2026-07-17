@@ -1,0 +1,7 @@
+code,label,treatment,prompt_profit_minus_compliance,mean_reasoning_profit_orientation,sd_reasoning_profit_orientation,n_reasoning_records,prompt_orientation_rank,reasoning_orientation_rank,rank_difference
+T1,Compliance,tarj_compliance,-0.1343623918546908,-0.0108461212084781,0.0266262009920854,175,1.0,1.0,0.0
+T2,Balanced,tarj_balanced_profit_compliance,0.0092115060139728,0.0279264464018899,0.0297143905263954,175,2.0,2.0,0.0
+T3,Guided Profit,tarj_guided_profit,0.0595828636501931,0.0571237883345826,0.0271298246204128,175,3.0,3.0,0.0
+T4,Baseline Profit,tarj_default,0.1252509049534585,0.0656485773331141,0.0264257315656393,175,4.0,5.0,1.0
+T5,Profit-Max,tarj_profit_max,0.131522486039241,0.0646275516837182,0.0246566955193637,175,5.0,4.0,-1.0
+T6,High Profit-Max,tarj_aggressive_profit_max,0.1473416596838563,0.0669448347325169,0.020141880016948,175,6.0,6.0,0.0

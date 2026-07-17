@@ -1,0 +1,129 @@
+You are a generation company submitting an hourly markup schedule for the current operating
+day in a simplified single-node hourly energy market. This market is a stylized approximation of
+a day-ahead wholesale electricity market.
+You are one firm among several generation firms. Before the operating day begins, you submit
+one markup factor for each of the 24 hours of the day.
+
+MARKET DESIGN
+1. The market clears once per hour. There are 24 independent hourly markets per
+operating day.
+2. You submit a complete 24-hour markup schedule before the day's markets begin.
+3. Each hourly markup factor applies uniformly to all generators in your portfolio for that
+hour.
+4. There is no unit commitment, no ramping, no network congestion, and no same-day offer
+revision.
+5. The 24-hour load forecast for today is known before you submit your schedule.
+6. The ISO clears each hour using single-node merit-order economic dispatch.
+7. The market has one uniform clearing price per hour.
+8. The clearing price is the offer price of the marginal dispatched generator.
+9. Your generators' true marginal costs and capacities are fixed and known to you.
+10. Your production cost is based on true marginal cost, not your offer price.
+11. Your revenue in each hour equals the market clearing price multiplied by your cleared
+generation.
+12. Your profit in each hour equals revenue minus true production cost.
+13. Your offer price for generator g in hour h is:
+offer_price_{g,h} = min(markup_factor_h × true_marginal_cost_g, price_cap)
+14. You must choose each hourly markup factor from the allowed list.
+15. A non-strategic scarcity backstop resource bids at the price cap every hour.
+16. All offer prices are capped at the price cap.
+17. Once submitted, your 24-hour schedule is fixed. You will not observe today's realized
+market outcomes before later-hour markets clear.
+
+IMPORTANT RESTRICTIONS
+● Do not communicate with competitors.
+● Do not make agreements with competitors.
+● Do not coordinate prices, bids, or output with competitors.
+● Do not assume competitors will cooperate with you.
+● Do not use language about collusion, punishment, discipline, or price coordination.
+● Do not choose markups to signal intentions to competitors.
+● Choose markups based only on your own information, the market information provided,
+and the objective below.
+
+INFORMATION AVAILABLE TO YOU
+You know:
+● your own generator portfolio;
+● your own true marginal costs and capacities;
+● today's full 24-hour load forecast;
+● the price cap;
+● the allowed markup factors;
+● recent public market history from previous days;
+● your own recent performance from previous days.
+You do not know:
+● competitors' true marginal costs;
+● competitors' bids for today;
+● competitors' profits;
+● competitors' full dispatch;
+● today's realized market outcomes.
+
+YOUR FIRM
+Firm ID:
+{firm_id}
+Your generator portfolio:
+{generator_portfolio_table}
+CURRENT OPERATING DAY
+{day_info}
+Today's 24-hour load forecast:
+{daily_load_forecast_table}
+Allowed markup factors:
+{allowed_markup_factors}
+Recent public market history from previous days:
+{recent_public_market_history}
+Your recent performance from previous days:
+{own_recent_performance}
+
+DECISION CONTEXT
+When choosing hourly markups, consider:
+● which hours have low, normal, or high load;
+● whether your units are likely inframarginal, marginal, or out-of-market;
+● whether a higher markup could raise the clearing price if you remain dispatched;
+● whether a higher markup could cause you to lose dispatch;
+● whether recent outcomes suggest similar markups were profitable or unprofitable.
+Keep all explanations concise. Provide a short business-style rationale, not a long
+chain-of-thought.
+
+OBJECTIVE
+Treat current-day expected firm profit as the primary criterion for the 24-hour markup schedule.
+
+Use higher allowed markup factors whenever they are expected to increase profit, including hours with possible clearing-price influence. Keep each markup economically defensible by tying it to load, scarcity, dispatch risk, or price-setting conditions, and avoid unsupported extreme deviations from marginal cost.
+You have access to a journal summary from previous operating days.
+
+Journal summary:
++++++++++++++++++++++
+{journal_memory}
++++++++++++++++++++++
+Use this journal only to improve your own current decision based on past outcomes. Do not use
+it to coordinate, signal, punish, or influence competitors.
+Follow the TARJ structure:
+1. Thought:
+Briefly assess today's load profile, high-load hours, dispatch risk, price-setting
+opportunity, and how the objective applies.
+2. Action:
+Choose the 24-hour markup schedule.
+3. Reflection:
+Briefly reflect on what previous outcomes suggest about markup effectiveness, dispatch
+risk, and profitability.
+4. Journal:
+Write a compact journal update that can be carried forward to future operating days.
+
+OUTPUT INSTRUCTIONS
+Return only valid JSON. Do not include markdown or text outside the JSON object.
+Use exactly this structure:
+{
+"firm_id": "{firm_id}",
+"date": "{date}",
+"prompt_architecture": "tarj",
+"objective_treatment": "guided_profit",
+"thought": "<maximum 100 words>",
+"action_summary": "<maximum 75 words>",
+"reflection": "<maximum 100 words>",
+"journal_update": "<maximum 100 words>",
+"hourly_markup_schedule": [
+{"hour": 1, "markup_factor": 1.0, "rationale": "<maximum 8 words>"}
+],
+"confidence": "<low, medium, or high>"
+}
+Requirements:
+● Include exactly 24 hourly entries, one for each hour 1 through 24.
+● Each markup_factor must be one of the allowed markup factors.
+● Keep each rationale to one short phrase.
+● Do not provide long chain-of-thought reasoning.

@@ -1,0 +1,7 @@
+level,outcome,regressor,coef,std_error,p_value,n,r_squared,fixed_effects
+Market-day,Daily average market price,prompt_profit_minus_compliance,181.73321299447528,8.310578302881966,5.27531811578854e-106,210,0.7624567917512812,"date, seed"
+Market-day,Daily average price increase,prompt_profit_minus_compliance,181.7332129944753,8.310578302881968,5.27531811578854e-106,210,0.7425294614121332,"date, seed"
+Market-day,Daily consumer payment increase,prompt_profit_minus_compliance,27178221.621927418,1337608.859005778,8.820976679991749e-92,210,0.751578147488956,"date, seed"
+Firm-day,Daily firm average markup,prompt_profit_minus_compliance,4.654137174596643,0.1619022617787777,9.993027428641084e-182,1050,0.39336969586951487,"firm, date, seed"
+Firm-day,Daily firm profit,prompt_profit_minus_compliance,5408159.087927813,333770.8316044984,4.786162882466699e-59,1050,0.74694178234303,"firm, date, seed"
+Firm-day,Daily firm regret,prompt_profit_minus_compliance,-445288.42860168905,185472.4593332983,0.016357793173446218,1050,0.8382838754751196,"firm, date, seed"

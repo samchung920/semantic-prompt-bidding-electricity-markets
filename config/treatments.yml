@@ -1,0 +1,33 @@
+# Exact treatments included in the paper. Do not add the four post-paper
+# exploratory treatments to this repository or to any paper reproduction run.
+treatments:
+  T1:
+    id: tarj_compliance
+    label: Compliance
+    prompt_file: prompts/tarj_compliance_v1.txt
+    schema_profile: tarj
+  T2:
+    id: tarj_balanced_profit_compliance
+    label: Balanced
+    prompt_file: prompts/tarj_balanced_profit_compliance_v1.txt
+    schema_profile: tarj
+  T3:
+    id: tarj_guided_profit
+    label: Guided Profit
+    prompt_file: prompts/tarj_guided_profit_v1.txt
+    schema_profile: tarj
+  T4:
+    id: tarj_default
+    label: Baseline Profit
+    prompt_file: prompts/tarj_default_v1.txt
+    schema_profile: tarj
+  T5:
+    id: tarj_profit_max
+    label: Profit-Max
+    prompt_file: prompts/tarj_profit_max_v1.txt
+    schema_profile: tarj
+  T6:
+    id: tarj_aggressive_profit_max
+    label: High Profit-Max
+    prompt_file: prompts/tarj_aggressive_profit_max_v1.txt
+    schema_profile: tarj
