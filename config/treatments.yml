@@ -4,30 +4,30 @@ treatments:
   T1:
     id: tarj_compliance
     label: Compliance
-    prompt_file: prompts/tarj_compliance_v1.txt
+    prompt_file: prompts/T1_compliance.txt
     schema_profile: tarj
   T2:
     id: tarj_balanced_profit_compliance
     label: Balanced
-    prompt_file: prompts/tarj_balanced_profit_compliance_v1.txt
+    prompt_file: prompts/T2_balanced.txt
     schema_profile: tarj
   T3:
     id: tarj_guided_profit
     label: Guided Profit
-    prompt_file: prompts/tarj_guided_profit_v1.txt
+    prompt_file: prompts/T3_guided_profit.txt
     schema_profile: tarj
   T4:
     id: tarj_default
     label: Baseline Profit
-    prompt_file: prompts/tarj_default_v1.txt
+    prompt_file: prompts/T4_baseline_profit.txt
     schema_profile: tarj
   T5:
     id: tarj_profit_max
     label: Profit-Max
-    prompt_file: prompts/tarj_profit_max_v1.txt
+    prompt_file: prompts/T5_profit_max.txt
     schema_profile: tarj
   T6:
     id: tarj_aggressive_profit_max
     label: High Profit-Max
-    prompt_file: prompts/tarj_aggressive_profit_max_v1.txt
+    prompt_file: prompts/T6_high_profit_max.txt
     schema_profile: tarj

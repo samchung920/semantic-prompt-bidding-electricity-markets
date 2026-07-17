@@ -28,12 +28,16 @@ in [the experiment registry](provenance/EXPERIMENT_REGISTRY.md).
 
 - `paper/` - final manuscript PDF.
 - `prompts/` and `config/` - exact treatment prompts and paper-only registry.
-- `src/` - archived simulator and analysis code.
+- `src/` - archived simulation, semantic-analysis, and paper-figure code.
 - `data/market/` - market inputs and truthful benchmark inputs used by the runs.
 - `results/raw-runs/` - exact output directories for all 30 paper runs.
 - `results/analysis/six-treatment/` - cached tables and intermediate analyses.
 - `results/paper-figures/` - final-candidate paper figures, tables, and report.
 - `provenance/` - source state and checksums for this immutable snapshot.
+
+`provenance/MANIFEST.sha256` is a cryptographic inventory of the frozen
+snapshot. Verify it after cloning with `shasum -a 256 -c
+provenance/MANIFEST.sha256`.
 
 ## Reproduce the paper figures
 
